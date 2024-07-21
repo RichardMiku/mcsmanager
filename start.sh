@@ -18,7 +18,7 @@ fi
 screen -S daemon -dm bash -c "./start-daemon.sh"
 
 # Start the second screen session and run start-web.sh
-screen -S web -dm bash -c "./start-web.sh"
+bash -c "./start-web.sh"
 
 # Output a message indicating the sessions have been started
 echo "Screen sessions 'daemon' and 'web' have been started successfully."
