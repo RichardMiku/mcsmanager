@@ -27,5 +27,8 @@ COPY start.sh /opt/mcsmanager/start.sh
 # 赋予启动脚本执行权限
 RUN chmod +x /opt/mcsmanager/start.sh
 
+# 暴露端口23333供外部访问
+EXPOSE 23333
+
 # 执行启动脚本
 CMD ["./start.sh"]

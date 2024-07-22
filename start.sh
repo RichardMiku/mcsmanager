@@ -15,10 +15,13 @@ if [ ! -x "start-web.sh" ]; then
 fi
 
 # Start the first screen session and run start-daemon.sh
-screen -S daemon -dm bash -c "./start-daemon.sh"
+screen -S mcsm -dm bash -c "./start-daemon.sh" >> output.log &
 
 # Start the second screen session and run start-web.sh
-bash -c "./start-web.sh"
+screen -S mcsm -dm bash -c "./start-web.sh" >> output.log
 
 # Output a message indicating the sessions have been started
 echo "Screen sessions 'daemon' and 'web' have been started successfully."
+
+# End of script
+tail -f output.log
