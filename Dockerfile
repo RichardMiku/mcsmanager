@@ -1,13 +1,11 @@
-# 使用官方Ubuntu基础镜像
-FROM ubuntu:latest
+# 使用官方Node.js基础镜像
+FROM node:latest
 
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
 # 安装必要的环境
 RUN apt-get update && apt-get install -y \
-    nodejs \
-    npm \
     screen \
     wget \
     && rm -rf /var/lib/apt/lists/*
