@@ -4,12 +4,6 @@ FROM node:latest
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
-# 安装必要的环境
-RUN apt-get update && apt-get install -y \
-    screen \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
-
 # 下载MCSManager最新版本
 RUN wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
 
