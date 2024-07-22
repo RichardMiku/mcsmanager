@@ -1,14 +1,16 @@
-# 使用官方Node.js基础镜像
-FROM node:latest
+# 使用官方CentOS基础镜像
+FROM centos:latest
 
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
 # 安装必要的环境
-RUN apt-get update && apt-get install -y \
+RUN yum makecache && yum install -y \
+    nodejs \
+    npm \
     screen \
     wget \
-    && rm -rf /var/lib/apt/lists/*
+    && yum clean all
 
 # 下载MCSManager最新版本
 RUN wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
