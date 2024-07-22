@@ -24,4 +24,3 @@ screen -S mcsm -dm bash -c "./start-web.sh" >> output.log
 echo "Screen sessions 'daemon' and 'web' have been started successfully."
 
 # End of script
-tail -f output.log
