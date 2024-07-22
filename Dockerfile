@@ -1,30 +1,17 @@
-# 使用官方CentOS基础镜像
-FROM centos:centos7
+# 使用官方Node.js 20的Alpine基础镜像
+FROM node:20-alpine
 
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
-# 更换为阿里云镜像源
-# RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
-
-# 更换为清华大学开源软件镜像站的镜像源
-#RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/
-
-# 更换为腾讯云开源软件镜像站的镜像源
-RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
-
-# 安装EPEL源
-RUN yum install -y epel-release
-
-# 更新yum源
-RUN yum makecache
-
-# 更新yum源并安装必要的环境
-RUN yum install -y \
-    nodejs \
+# 安装必要的依赖
+RUN apk add --no-cache \
     screen \
     wget \
-    && yum clean all
+    bash
+
+# 更新npm和安装pm2
+RUN npm install -g npm@latest pm2
 
 # 下载MCSManager最新版本
 RUN wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
