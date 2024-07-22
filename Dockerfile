@@ -1,5 +1,5 @@
 # 使用官方CentOS基础镜像
-FROM centos:centos7
+FROM node:20-alpine
 
 # 设置工作目录
 WORKDIR /opt/mcsmanager
@@ -10,24 +10,24 @@ WORKDIR /opt/mcsmanager
 # 更换为清华大学开源软件镜像站的镜像源
 #RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/
 
-# 更换为腾讯云开源软件镜像站的镜像源
-RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
+# # 更换为腾讯云开源软件镜像站的镜像源
+# RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
 
-# 安装EPEL源
-RUN yum install -y epel-release
+# # 安装EPEL源
+# RUN yum install -y epel-release
 
-# 更新yum源
-RUN yum makecache
+# # 更新yum源
+# RUN yum makecache
 
-# 更新yum源并安装必要的环境
-RUN yum install -y \
-    nodejs \
-    screen \
-    wget \
-    && yum clean all
+# # 更新yum源并安装必要的环境
+# RUN yum install -y \
+#     nodejs \
+#     screen \
+#     wget \
+#     && yum clean all
 
 # 下载MCSManager最新版本
-RUN wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
+RUN curl -L https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz -o mcsmanager_linux_release.tar.gz
 
 # 解压MCSManager到当前目录
 RUN tar -zxf mcsmanager_linux_release.tar.gz
