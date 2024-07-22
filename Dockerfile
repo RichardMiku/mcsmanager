@@ -1,14 +1,11 @@
 # 使用官方CentOS基础镜像
-FROM centos:latest
+FROM centos:centos7
 
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
 # 更换为阿里云镜像源
-RUN sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g' \
-         -i.bak \
-         /etc/yum.repos.d/CentOS-*.repo
+# RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 
 # 更新yum源并安装必要的环境
 RUN yum makecache && yum install -y \
