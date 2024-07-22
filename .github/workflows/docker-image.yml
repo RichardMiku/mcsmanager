@@ -16,8 +16,7 @@ jobs:
       id: get-version
       run: echo "::set-output name=version::$(cat version.txt)"
 
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v2
+    # 注意：这里已经移除了QEMU设置步骤
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
