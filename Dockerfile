@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     screen \
     wget \
     bash \
-    openjdk8-jre  # 安装OpenJDK 8 JRE
+    openjdk17-jre  # 安装OpenJDK 17 JRE
 
 # 更新npm和安装pm2
 RUN npm install -g npm@latest pm2
@@ -35,9 +35,9 @@ EXPOSE 24444
 EXPOSE 25565
 EXPOSE 19132
 
-# 设置环境变量，指定Java路径（如果需要的话）
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
-    PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
+# 设置环境变量，指定Java路径
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
+    PATH=$PATH:/usr/lib/jvm/java-17-openjdk/bin
 
 # 执行启动脚本
 CMD ["./start.sh"]
