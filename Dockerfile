@@ -4,8 +4,11 @@ FROM centos:latest
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
-# 安装EPEL源
-RUN yum install -y epel-release
+# 更换为阿里云镜像源
+RUN sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-*.repo
 
 # 更新yum源并安装必要的环境
 RUN yum makecache && yum install -y \
