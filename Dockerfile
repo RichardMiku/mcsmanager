@@ -4,7 +4,10 @@ FROM centos:latest
 # 设置工作目录
 WORKDIR /opt/mcsmanager
 
-# 安装必要的环境
+# 安装EPEL源
+RUN yum install -y epel-release
+
+# 更新yum源并安装必要的环境
 RUN yum makecache && yum install -y \
     nodejs \
     npm \
