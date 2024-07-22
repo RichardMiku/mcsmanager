@@ -5,7 +5,10 @@ FROM centos:centos7
 WORKDIR /opt/mcsmanager
 
 # 更换为阿里云镜像源
-#RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+# RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+
+# 更换为Cloudflare镜像源
+RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirror.cloudflare.com/centos/7.9.2009/os/x86_64/
 
 # 更新yum源并安装必要的环境
 RUN yum makecache && yum install -y \

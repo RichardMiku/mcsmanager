@@ -1,1 +1,1 @@
-noqemu
+centos
