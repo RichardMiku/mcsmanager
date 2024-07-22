@@ -34,7 +34,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v3
       with:
-        context: ./Ubuntu  # 指定Dockerfile所在的路径
-        file: ./Ubuntu/Dockerfile  # 指定Dockerfile的路径
+        context: ./ubuntu  # 指定Dockerfile所在的路径
+        file: ./ubuntu/Dockerfile  # 指定Dockerfile的路径
         tags: ${{ secrets.ACR_REGISTRY }}/mcsmanager:${{ steps.get-version.outputs.version }}
         push: true
