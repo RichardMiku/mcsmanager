@@ -8,7 +8,11 @@ WORKDIR /opt/mcsmanager
 # RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 
 # 更换为清华大学开源软件镜像站的镜像源
-RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/
+RUN sed -e "s|^mirrorlist=|#mirrorlist=|g" \
+-e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/7|g" \
+-e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/7|g" \
+-i.bak \
+/etc/yum.repos.d/CentOS-*.repo
 
 # 更新yum源并安装必要的环境
 RUN yum makecache && yum install -y \
