@@ -8,7 +8,8 @@ WORKDIR /opt/mcsmanager
 RUN apk add --no-cache \
     screen \
     wget \
-    bash
+    bash \
+    openjdk8-jre  # 安装OpenJDK 8 JRE
 
 # 更新npm和安装pm2
 RUN npm install -g npm@latest pm2
@@ -28,8 +29,15 @@ COPY start.sh /opt/mcsmanager/start.sh
 # 赋予启动脚本执行权限
 RUN chmod +x /opt/mcsmanager/start.sh
 
-# 暴露端口23333供外部访问
+# 暴露多个端口供外部访问
 EXPOSE 23333
+EXPOSE 24444
+EXPOSE 25565
+EXPOSE 19132
+
+# 设置环境变量，指定Java路径（如果需要的话）
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
+    PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 
 # 执行启动脚本
 CMD ["./start.sh"]

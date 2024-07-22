@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 配置Java环境变量
+export JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+
 # Change directory to /opt/mcsmanager
 cd /opt/mcsmanager || { echo "Directory /opt/mcsmanager does not exist"; exit 1; }
 
