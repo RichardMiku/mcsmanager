@@ -13,8 +13,14 @@ WORKDIR /opt/mcsmanager
 # 更换为腾讯云开源软件镜像站的镜像源
 RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
 
+# 安装EPEL源
+RUN yum install -y epel-release
+
+# 更新yum源
+RUN yum makecache
+
 # 更新yum源并安装必要的环境
-RUN yum makecache && yum install -y \
+RUN yum install -y \
     nodejs \
     npm \
     screen \
