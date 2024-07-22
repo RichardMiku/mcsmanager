@@ -1,4 +1,4 @@
-name: Build and Push to Alibaba Cloud
+name: Build From Ubuntu
 
 on:
   push:
@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
-    # 读取version.txt中的版本号
-    - name: Read version from file
-      id: get-version
-      run: echo "::set-output name=version::$(cat version.txt)"
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
@@ -36,5 +31,5 @@ jobs:
       with:
         context: ./ubuntu  # 指定Dockerfile所在的路径
         file: ./ubuntu/Dockerfile  # 指定Dockerfile的路径
-        tags: ${{ secrets.ACR_REGISTRY }}/mcsmanager:${{ steps.get-version.outputs.version }}
+        tags: ${{ secrets.ACR_REGISTRY }}/mcsmanager:ubuntu  # 直接使用latest作为版本号
         push: true
