@@ -22,7 +22,6 @@ RUN yum makecache
 # 更新yum源并安装必要的环境
 RUN yum install -y \
     nodejs \
-    npm \
     screen \
     wget \
     && yum clean all
